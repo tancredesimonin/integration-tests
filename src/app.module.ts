@@ -1,10 +1,41 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { CONFIG, CONFIG_MODULE_OPTIONS } from '@/config';
+import { LoggerModule } from 'nestjs-pino';
+import { SendinblueModule } from "@sendinblue/sendinblue.module";
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    ConfigModule.forRoot(CONFIG_MODULE_OPTIONS),
+    LoggerModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => {
+        return {
+          pinoHttp:
+            configService.get(CONFIG.APP.NODE_ENV) === 'production'
+              ? {}
+              : {
+                  customProps: () => ({
+                    context: 'HTTP',
+                  }),
+                  level: configService.get(CONFIG.APP.DEFAULT_LOG_LEVEL),
+                  autoLogging:
+                    configService.get(CONFIG.APP.LOG_HTTP) === 'true',
+                  transport: {
+                    target: 'pino-pretty',
+                    options: {
+                      singleLine: true,
+                      colorize: true,
+                    },
+                  },
+                },
+        };
+      },
+    }),
+    SendinblueModule,
+  ],
+  // controllers: [AppController],
+  // providers: [AppService],
 })
 export class AppModule {}
