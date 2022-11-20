@@ -1,8 +1,9 @@
 import { Module } from "@nestjs/common";
 import { SendinblueService } from "@sendinblue/sendinblue.service";
+import { HttpModule } from "@nestjs/axios";
 
 @Module({
-  imports: [],
+  imports: [HttpModule],
   providers: [SendinblueService],
   exports: [SendinblueService],
   controllers: []

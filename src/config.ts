@@ -12,4 +12,7 @@ export const CONFIG = {
     LOG_HTTP: 'LOG_HTTP',
     BACKEND_DOMAIN: 'BACKEND_DOMAIN',
   },
+  PROVIDERS: {
+    SENDINBLUE: 'API_KEY_SENDINBLUE'
+  }
 };

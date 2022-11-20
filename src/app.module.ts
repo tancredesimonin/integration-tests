@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { CONFIG, CONFIG_MODULE_OPTIONS } from '@/config';
 import { LoggerModule } from 'nestjs-pino';
 import { SendinblueModule } from "@sendinblue/sendinblue.module";
+import { HealthModule } from "@health/health.module";
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { SendinblueModule } from "@sendinblue/sendinblue.module";
         };
       },
     }),
+    HealthModule,
     SendinblueModule,
   ],
   // controllers: [AppController],

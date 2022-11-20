@@ -3,8 +3,11 @@
 /node_modules
 
 # env variables
+.data
+/files
 .env
-/.env
+.env.*
+/ormconfig.json
 
 # Logs
 logs
