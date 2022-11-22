@@ -11,6 +11,7 @@
   "moduleNameMapper": {
     "^@/(.*)$": "<rootDir>/../src/$1",
     "^@health/(.*)$": "<rootDir>/../src/health/$1",
+    "^@mail/(.*)$": "<rootDir>/../src/mail/$1",
     "^@sendinblue/(.*)$": "<rootDir>/../src/sendinblue/$1",
     "^@shared/(.*)$": "<rootDir>/../src/shared/$1"
 

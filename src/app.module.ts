@@ -4,6 +4,8 @@ import { CONFIG, CONFIG_MODULE_OPTIONS } from '@/config';
 import { LoggerModule } from 'nestjs-pino';
 import { SendinblueModule } from "@sendinblue/sendinblue.module";
 import { HealthModule } from "@health/health.module";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { MailModule } from "@/mail/mail.module";
 
 @Module({
   imports: [
@@ -34,7 +36,21 @@ import { HealthModule } from "@health/health.module";
         };
       },
     }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        type: 'postgres',
+        url: configService.get(CONFIG.DATABASE.URL),
+        synchronize: true,
+        dropSchema: true,
+        keepConnectionAlive: true,
+        logging: false,
+        autoLoadEntities: true,
+      })
+    }),
     HealthModule,
+    MailModule,
     SendinblueModule,
   ],
   // controllers: [AppController],

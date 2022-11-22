@@ -14,5 +14,8 @@ export const CONFIG = {
   },
   PROVIDERS: {
     SENDINBLUE: 'API_KEY_SENDINBLUE'
+  },
+  DATABASE: {
+    URL: 'DATABASE_URL'
   }
 };

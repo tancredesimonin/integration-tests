@@ -24,6 +24,9 @@
       "@health/*": [
         "src/health/*"
       ],
+      "@mail/*": [
+        "src/mail/*"
+      ],
       "@sendinblue/*": [
         "src/sendinblue/*"
       ],

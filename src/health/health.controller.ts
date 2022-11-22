@@ -4,8 +4,8 @@ import { CONSTANTS } from '@/constants';
 import {
   HealthCheck,
   HealthCheckService,
-  HttpHealthIndicator,
-} from '@nestjs/terminus';
+  HttpHealthIndicator, TypeOrmHealthIndicator
+} from "@nestjs/terminus";
 import { ConfigService } from '@nestjs/config';
 import { capitalize } from "@shared/utils/capitalize";
 import { CONFIG } from "@/config";
@@ -21,7 +21,8 @@ export class HealthController {
     private config: ConfigService,
     private health: HealthCheckService,
     private http: HttpHealthIndicator,
-    private sendinblue: SendinblueService
+    private sendinblue: SendinblueService,
+    private postgres: TypeOrmHealthIndicator,
   ) {
   }
 
@@ -29,6 +30,7 @@ export class HealthController {
   @HealthCheck()
   check() {
     return this.health.check([
+      () => this.postgres.pingCheck('database'),
       () =>
         this.http.pingCheck(
           'documentation',
