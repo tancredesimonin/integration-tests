@@ -1,6 +1,6 @@
 export const extractEmailParams = (htmlContent:string) => {
 
-  return  htmlContent.match(/\{\{params\.[[A-Z]*/g)
+  return  htmlContent.match(/\{\{params\.[[A-Z_]*/g)
 }
 
 export const extractEmailParamsName = (emailParamsArray: string[] | null): string[] | null => {

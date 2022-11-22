@@ -29,8 +29,8 @@ describe('shared.extractors', () => {
   })
 
   it('extractEmailParams - should return 2 params if 2 params are matched', () => {
-    const expected = [ '{{params.URL', '{{params.NAME' ];
-    const content = `Lorem ipsum dolor sit amet, {{params.URL}} adipiscing {{params.NAME}} elit`
+    const expected = [ '{{params.URL', '{{params.ORGANISATION_NAME' ];
+    const content = `Lorem ipsum dolor sit amet, {{params.URL}} adipiscing {{params.ORGANISATION_NAME}} elit`
     const result = extractEmailParams(content)
     expect(result).toEqual(expected)
   })
