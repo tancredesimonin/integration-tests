@@ -1,0 +1,19 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": ".",
+  "testEnvironment": "node",
+  "testRegex": ".e2e-spec.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "silent": false,
+  "verbose": true,
+  "moduleNameMapper": {
+    "^@/(.*)$": "<rootDir>/../src/$1",
+    "^@health/(.*)$": "<rootDir>/../src/health/$1",
+    "^@mail/(.*)$": "<rootDir>/../src/mail/$1",
+    "^@sendinblue/(.*)$": "<rootDir>/../src/sendinblue/$1",
+    "^@shared/(.*)$": "<rootDir>/../src/shared/$1"
+
+  }
+}
